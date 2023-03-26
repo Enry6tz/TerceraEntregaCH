@@ -77,7 +77,6 @@ class CarritoController {
         const nProdu = new Producto(productoS.id, productoS.nombre, productoS.precio, productoS.cantidad); 
         nProdu.cantidad = num
         this.arrayCarrito.push(nProdu)
-
     }
     calcularTotal(){
         let res=0;
@@ -106,7 +105,7 @@ const listaProductos = new StockController();
 
 
 //carga de productos
-listaProductos.agregarAlStock(new Producto(1,"Samsung Tab A8", 111000, 10, "assets/samsung/tablets/3.webp", "tablet", "samsung"))
+listaProductos.agregarAlStock(new Producto(1,"Samsung Tab A8", 111000, 10, "assets/samsung/tablet/3.webp", "tablet", "samsung"))
 listaProductos.agregarAlStock(new Producto(2,"Samsung Tab s6 Lite", 160000, 10, "assets/samsung/tablet/2.png", "tablet", "samsung"))
 listaProductos.agregarAlStock(new Producto(3,"Samsung Tab s8 Ultra", 570000, 10, "assets/samsung/tablet/3.png", "tablet", "samsung"))
 listaProductos.agregarAlStock(new Producto(4,"Samsung s22 Ultra", 440000, 10, "assets/samsung/celular/3.png", "celuar", "samsung"))
@@ -118,6 +117,7 @@ listaProductos.agregarAlStock(new Producto(9,"Samsung Watch5 Grapithe", 110000, 
 listaProductos.agregarAlStock(new Producto(10,"Samsung Buds2 White", 61000, 10, "assets/samsung/auriculares/1.png", "auriculares", "samsung"))
 listaProductos.agregarAlStock(new Producto(11,"Samsung Buds pro Negro", 47000, 10, "assets/samsung/auriculares/2.png", "auriculares", "samsung"))
 listaProductos.agregarAlStock(new Producto(12,"Samsung Buds2 Grafito",62000, 10, "assets/samsung/auriculares/3.png", "auriculares", "samsung"))
+console.log(listaProductos)
 /*listaProductos.agregarAlStock(new Producto(13,"Samsung s23 Ultra", 410000, 10, "assets/iphone/tablet/", "tablet", "iphone"))
 listaProductos.agregarAlStock(new Producto(14,"Samsung s23 Ultra", 410000, 10, "assets/iphone/tablet/", "tablet", "iphone"))
 listaProductos.agregarAlStock(new Producto(15,"Samsung s23 Ultra", 410000, 10, "assets/iphone/tablet/", "tablet", "iphone"))
@@ -134,14 +134,21 @@ listaProductos.agregarAlStock(new Producto(23,"Samsung s23 Ultra", 410000, 10, "
 
 
 
-
-
+function agregarCard(fn){
+    const miDiv = document.getElementById('cardsProductos');
+    fn.forEach(elem => {
+        miDiv.innerHTML += ' <img src ="${elem.imagen}" class="producto-imagen"> ';
+    });
+ 
     
+}
+agregarCard(listaProductos);
+ 
 const contenedorProductos = document.querySelector("#contenedor-productos")
   const div = document.createElement("div")
         div.classList.add("producto");
         div.innerHTML += `
-            <img src="${producto.imagen}" alt="${producto.titulo}" class="producto-imagen">
+            <img src="" alt="${producto.titulo}" class="producto-imagen">
             <div class="producto-detalles">
                 <h3 class="producto-titulo">${producto.titulo}</h3>
                 <p class="producto-precio">$${producto.precio}</p>
@@ -149,9 +156,6 @@ const contenedorProductos = document.querySelector("#contenedor-productos")
             </div>
         `;
         contenedorProductos.append(div)
-    
-
-agragarHTML(listaProductos);
 
 /*  <div class="producto">
                     <img src="assets/samsung/audio/Buds_PRO.png" alt="" class="producto-imagen">
@@ -169,8 +173,6 @@ agragarHTML(listaProductos);
 
 
 
-console.log("Bienvenido a la tienda online")
-listaProductos.mostrarProductos();
 /*rta = prompt("Para iniciar una comprar ingrese cualquier tecla \nPara salir ingrese n \n     ¿Desea comprar algun producto? ")
 while (rta != "n"){
     aux= prompt("para comprar uno o varios articulos ingrese 1," + "\n" + "para vaciar el carrito ingrese 2" + "\n" +  "para mostrar el carrito ingrese 3" + "\n" + "para volver a mostrar los productos ingrese 4" )
